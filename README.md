@@ -11,4 +11,4 @@
 <h2 align="left">✍ Introdução ao repositório dedicado para organização de exercicíos e atividades propostas durante o estágio em Data & Analytics na empresa Compass.UOL.</h2>
 
 <h4 align="left"> ● O repositório será organizado de maneira que siga cada SPRINT do estágio. Sendo que cada pasta é relacionada a uma SPRINT e dentro dela irá conter pastas e arquivos referentes aos cursos da trilha de aprendizado.</h4>
-<h4 align="left"> ● Também dentro de cada pasta, em cada READme, irá anexado o exercicío realizado em cada SPRINT. 
+<h4 align="left"> ● Também dentro de cada pasta, em cada READme, irá anexado o exercício realizado em cada SPRINT. </h4>

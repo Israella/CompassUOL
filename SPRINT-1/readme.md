@@ -7,8 +7,7 @@
 
 <h2 align="left"> Conteúdo:</h2>
 
-<h2 align="left"> Diretrizes do Programa de Bolsa:</h2>
-
+<h3 align="left"> Diretrizes do Programa de Bolsa:</h3>
 <h3 align="left"> ● Metodologia Ágil e Scrum.</h3>
 <h3 align="left"> ● Sistema Operacional Linux.</h3>
 <h3 align="left"> ● Serviço GitHub</h3>

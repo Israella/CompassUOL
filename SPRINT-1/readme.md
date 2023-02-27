@@ -1,16 +1,4 @@
-<div align="center">
-<img src="https://user-images.githubusercontent.com/89945563/221701084-83e2b63e-f47b-47d6-ac3f-b70da1c4f1b5.jpg" />
-</div>
-<div align="center">
-<img src="https://user-images.githubusercontent.com/89945563/221701494-162cfbfc-ea3d-4bac-8582-4d81b62b842f.jpg" />
-</div>
-
-
-
-
-
-
-<h1 align="center"> PROPOSTA DA SPRINT 1 </h>
+<h1 align="center"> PROPOSTA & CERTIFICAÇÕES DA SPRINT 1 </h>
 <h2 align="left"> Objetivos:</h2>
 
 <h3 align="left"> ● Introduzir os participantes ao funcionamento do Programa de Bolsas.</h3>
@@ -26,3 +14,9 @@
 <h3 align="left"> ● Principais comandos do sistema de versionamento Git.</h3>
 <h3 align="left"> ● Linguagem Markdown.</h3>
 
+<div align="center">
+<img src="https://user-images.githubusercontent.com/89945563/221701084-83e2b63e-f47b-47d6-ac3f-b70da1c4f1b5.jpg" />
+</div>
+<div align="center">
+<img src="https://user-images.githubusercontent.com/89945563/221701494-162cfbfc-ea3d-4bac-8582-4d81b62b842f.jpg" />
+</div>

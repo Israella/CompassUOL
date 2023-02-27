@@ -1,1 +1,0 @@
-<h1 align="center"> EXERCICÍO PROPOSTO AO FINAL DA SPRINT 1 </h>

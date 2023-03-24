@@ -1,0 +1,50 @@
+Harrison Ford, 118.82.
+Samuel L. Jackson, 69.17.
+Morgan Freeman, 73.25.
+Tom Hanks, 98.65.
+"Robert Downey Jr.", 74.48.
+Eddie Murphy, 100.27.
+Tom Cruise, 99.64.
+Johnny Depp, 74.86.
+Michael Caine, 57.78.
+Scarlett Johansson, 90.3.
+Gary Oldman, 86.68.
+Robin Williams, 66.92.
+Bruce Willis, 53.16.
+Stellan Skarsgard, 73.84.
+Anthony Daniels, 451.84.
+Ian McKellen, 101.63.
+Will Smith, 131.21.
+Stanley Tucci, 62.48.
+Matt Damon, 79.67.
+Robert DeNiro, 39.0.
+Cameron Diaz, 89.17.
+Liam Neeson, 46.71.
+Andy Serkis, 125.68.
+Don Cheadle, 84.86.
+Ben Stiller, 76.41.
+Helena Bonham Carter, 78.39.
+Orlando Bloom, 165.64.
+Woody Harrelson, 56.32.
+Cate Blanchett, 71.86.
+Julia Roberts, 65.13.
+Elizabeth Banks, 77.89.
+Ralph Fiennes, 75.43.
+Emma Watson, 157.76.
+Tommy Lee Jones, 58.29.
+Brad Pitt, 67.02.
+Adam Sandler, 83.16.
+Daniel Radcliffe, 154.96.
+Jonah Hill, 89.83.
+Owen Wilson, 66.73.
+Idris Elba, 99.25.
+Bradley Cooper, 102.31.
+Mark Wahlberg, 70.83.
+Jim Carrey, 94.27.
+Dustin Hoffman, 58.65.
+Leonardo DiCaprio, 100.73.
+Jeremy Renner, 119.06.
+Philip Seymour Hoffman, 61.59.
+Sandra Bullock, 70.36.
+Chris Evans, 106.86.
+Anne Hathaway, 96.66.

@@ -1,0 +1,3 @@
+Sim, podemos reutilizar um container que já existe. Usando o container "hashlib" como exemplo, podemos reutilizar ele com o comando:
+
+docker start -i hashlib

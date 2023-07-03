@@ -1,6 +1,6 @@
-# Desafio Data Lake AWS - README
+# Desafio Final
 
-Este repositório contém o código e a documentação relacionados ao Desafio Data Lake AWS. O desafio consiste na criação de um Data Lake na nuvem da AWS para processar, armazenar e visualizar dados de filmes e séries com a tematica de terror.
+Este repositório contém o código e a documentação relacionados ao Desafio Data Lake AWS. O desafio consiste na criação de um Data Lake na nuvem da AWS para processar, armazenar e visualizar dados de filmes e séries com a temática de terror.
 
 ## Observações:
 

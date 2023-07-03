@@ -1,0 +1,117 @@
+import sys
+from awsglue.transforms import *
+from awsglue.utils import getResolvedOptions
+from pyspark.context import SparkContext
+from awsglue.context import GlueContext
+from awsglue.job import Job
+from awsglue.dynamicframe import DynamicFrame
+from pyspark.sql import functions as SqlFuncs
+
+args = getResolvedOptions(sys.argv, ["JOB_NAME"])
+sc = SparkContext()
+glueContext = GlueContext(sc)
+spark = glueContext.spark_session
+job = Job(glueContext)
+job.init(args["JOB_NAME"], args)
+
+# Script generated for node Dados_TMDB
+Dados_TMDB_node1687533464960 = glueContext.create_dynamic_frame.from_catalog(
+    database="trusted_tmdb",
+    table_name="filmes",
+    transformation_ctx="Dados_TMDB_node1687533464960",
+)
+
+# Script generated for node Movies_CSV
+Movies_CSV_node1687533480460 = glueContext.create_dynamic_frame.from_catalog(
+    database="trusted_tmdb",
+    table_name="movies",
+    transformation_ctx="Movies_CSV_node1687533480460",
+)
+
+# Script generated for node Change Schema
+ChangeSchema_node1687533666290 = ApplyMapping.apply(
+    frame=Movies_CSV_node1687533480460,
+    mappings=[
+        ("id", "string", "id", "string"),
+        ("titulopincipal", "string", "titulopincipal", "string"),
+        ("titulooriginal", "string", "titulooriginal", "string"),
+        ("anolancamento", "string", "anolancamento", "string"),
+        ("tempominutos", "string", "tempominutos", "string"),
+        ("genero", "string", "genero", "string"),
+        ("notamedia", "double", "notamedia", "double"),
+        ("numerovotos", "int", "numerovotos", "int"),
+    ],
+    transformation_ctx="ChangeSchema_node1687533666290",
+)
+
+# Script generated for node Drop Duplicates
+DropDuplicates_node1687533845355 = DynamicFrame.fromDF(
+    ChangeSchema_node1687533666290.toDF().dropDuplicates(["id"]),
+    glueContext,
+    "DropDuplicates_node1687533845355",
+)
+
+# Script generated for node Renamed keys for Join
+RenamedkeysforJoin_node1687534097326 = ApplyMapping.apply(
+    frame=DropDuplicates_node1687533845355,
+    mappings=[
+        ("id", "string", "right_id", "string"),
+        ("titulopincipal", "string", "right_titulopincipal", "string"),
+        ("titulooriginal", "string", "right_titulooriginal", "string"),
+        ("anolancamento", "string", "right_anolancamento", "string"),
+        ("tempominutos", "string", "right_tempominutos", "string"),
+        ("genero", "string", "right_genero", "string"),
+        ("notamedia", "double", "right_notamedia", "double"),
+        ("numerovotos", "int", "right_numerovotos", "int"),
+    ],
+    transformation_ctx="RenamedkeysforJoin_node1687534097326",
+)
+
+# Script generated for node Join
+Dados_TMDB_node1687533464960DF = Dados_TMDB_node1687533464960.toDF()
+RenamedkeysforJoin_node1687534097326DF = RenamedkeysforJoin_node1687534097326.toDF()
+Join_node1687533919188 = DynamicFrame.fromDF(
+    Dados_TMDB_node1687533464960DF.join(
+        RenamedkeysforJoin_node1687534097326DF,
+        (
+            Dados_TMDB_node1687533464960DF["id"]
+            == RenamedkeysforJoin_node1687534097326DF["right_id"]
+        ),
+        "left",
+    ),
+    glueContext,
+    "Join_node1687533919188",
+)
+
+# Script generated for node Change Schema
+ChangeSchema_node1687534762855 = ApplyMapping.apply(
+    frame=Join_node1687533919188,
+    mappings=[
+        ("id", "string", "id", "string"),
+        ("popularidade", "double", "popularidade", "double"),
+        ("right_id", "string", "right_id", "string"),
+        ("right_titulopincipal", "string", "right_titulopincipal", "string"),
+        ("right_titulooriginal", "string", "right_titulooriginal", "string"),
+        ("right_anolancamento", "string", "right_anolancamento", "string"),
+        ("right_genero", "string", "right_genero", "string"),
+        ("right_notamedia", "double", "right_notamedia", "double"),
+        ("right_numerovotos", "int", "right_numerovotos", "int"),
+    ],
+    transformation_ctx="ChangeSchema_node1687534762855",
+)
+
+# Script generated for node Tab_Refined
+Tab_Refined_node1687534851130 = glueContext.getSink(
+    path="s3://data-lake-israella/Refined/",
+    connection_type="s3",
+    updateBehavior="UPDATE_IN_DATABASE",
+    partitionKeys=[],
+    enableUpdateCatalog=True,
+    transformation_ctx="Tab_Refined_node1687534851130",
+)
+Tab_Refined_node1687534851130.setCatalogInfo(
+    catalogDatabase="refined", catalogTableName="Cleaned_Data"
+)
+Tab_Refined_node1687534851130.setFormat("glueparquet")
+Tab_Refined_node1687534851130.writeFrame(ChangeSchema_node1687534762855)
+job.commit()

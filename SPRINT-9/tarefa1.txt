@@ -1,0 +1,23 @@
+Modelagem Relacional:
+
+1. Identificação de Entidades e Atributos: Identificar todas as entidades (objetos) relevantes para o sistema e os atributos que descrevem cada entidade.
+
+2. Definição das Chaves Primárias: Determinar quais atributos serão as chaves primárias de cada entidade, garantindo que sejam únicos para cada registro.
+
+3. Relacionamentos entre Entidades: Identificar os relacionamentos entre as entidades e estabelecer as chaves estrangeiras para representar essas relações.
+
+4. Cardinalidade dos Relacionamentos: Definir a cardinalidade (um-para-um, um-para-muitos, muitos-para-muitos) dos relacionamentos entre as entidades.
+
+5. Normalização: Opcionalmente, realizar a normalização do modelo para eliminar redundâncias e garantir a integridade dos dados.
+
+Normalização:
+
+A normalização é um processo de refinamento da estrutura do banco de dados, dividindo as tabelas em entidades mais granulares, a fim de reduzir a redundância e evitar problemas de atualização. Os passos básicos para normalização são:
+
+1.  Forma Normal (1NF): Garantir que cada coluna contenha apenas valores atômicos e que não haja valores repetidos dentro das células. Se necessário, criar novas tabelas para representar relações de um-para-muitos.
+
+2. Segunda Forma Normal (2NF): Garantir que todas as colunas não chave estejam completamente dependentes da chave primária.
+
+3. Terceira Forma Normal (3NF): Garantir que as colunas não chave não sejam transitivamente dependentes da chave primária.
+
+Em resumo, a modelagem relacional envolve a identificação de entidades, atributos e relacionamentos, enquanto a normalização visa garantir a integridade e eficiência do banco de dados, dividindo-o em entidades mais granulares e eliminando redundâncias. Esses processos são fundamentais para criar um banco de dados bem projetado e com boa performance.

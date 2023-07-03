@@ -1,0 +1,530 @@
+{
+	"jobConfig": {
+		"name": "Camada_Refined",
+		"description": "",
+		"role": "arn:aws:iam::900964329610:role/AWSGlueServiceRole-Lab4",
+		"command": "glueetl",
+		"version": "3.0",
+		"runtime": null,
+		"workerType": "G.1X",
+		"numberOfWorkers": 2,
+		"maxCapacity": 2,
+		"maxRetries": 0,
+		"timeout": 60,
+		"maxConcurrentRuns": 1,
+		"security": "none",
+		"scriptName": "Camada_Refined.py",
+		"scriptLocation": "s3://aws-glue-assets-900964329610-us-east-1/scripts/",
+		"language": "python-3",
+		"jobParameters": [],
+		"tags": [],
+		"jobMode": "VISUAL_MODE",
+		"createdOn": "2023-06-23T15:13:32.164Z",
+		"developerMode": false,
+		"connectionsList": [],
+		"temporaryDirectory": "s3://aws-glue-assets-900964329610-us-east-1/temporary/",
+		"logging": true,
+		"glueHiveMetastore": true,
+		"etlAutoTuning": true,
+		"metrics": true,
+		"spark": true,
+		"bookmark": "job-bookmark-disable",
+		"sparkPath": "s3://aws-glue-assets-900964329610-us-east-1/sparkHistoryLogs/",
+		"flexExecution": false,
+		"minFlexWorkers": null
+	},
+	"dag": {
+		"node-1687533845355": {
+			"nodeId": "node-1687533845355",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1687533666290"
+			],
+			"name": "Drop Duplicates",
+			"generatedNodeName": "DropDuplicates_node1687533845355",
+			"classification": "Transform",
+			"type": "DropDuplicates",
+			"parentsValid": true,
+			"calculatedType": "",
+			"columns": [
+				"id"
+			],
+			"codeGenVersion": 2
+		},
+		"node-1687533919188": {
+			"nodeId": "node-1687533919188",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1687533464960",
+				"node-1687534097326"
+			],
+			"name": "Join",
+			"generatedNodeName": "Join_node1687533919188",
+			"classification": "Transform",
+			"type": "Join",
+			"joinType": "left",
+			"columns": [
+				{
+					"from": "node-1687533464960",
+					"keys": [
+						"id"
+					]
+				},
+				{
+					"from": "node-1687534097326",
+					"keys": [
+						"right_id"
+					]
+				}
+			],
+			"columnConditions": [
+				"="
+			],
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1687534851130": {
+			"nodeId": "node-1687534851130",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1687534762855"
+			],
+			"name": "Tab_Refined",
+			"generatedNodeName": "Tab_Refined_node1687534851130",
+			"classification": "DataSink",
+			"type": "S3",
+			"streamingBatchInterval": 100,
+			"format": "glueparquet",
+			"compression": "uncompressed",
+			"path": "s3://data-lake-israella/Refined/",
+			"partitionKeys": [],
+			"schemaChangePolicy": {
+				"enableUpdateCatalog": true,
+				"updateBehavior": "UPDATE_IN_DATABASE",
+				"database": "refined",
+				"table": "Cleaned_Data"
+			},
+			"updateCatalogOptions": "schemaAndPartitions",
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1687534097326": {
+			"nodeId": "node-1687534097326",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1687533845355"
+			],
+			"name": "Renamed keys for Join",
+			"generatedNodeName": "RenamedkeysforJoin_node1687534097326",
+			"classification": "Transform",
+			"type": "ApplyMapping",
+			"mapping": [
+				{
+					"toKey": "right_id",
+					"fromPath": [
+						"id"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "right_titulopincipal",
+					"fromPath": [
+						"titulopincipal"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "right_titulooriginal",
+					"fromPath": [
+						"titulooriginal"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "right_anolancamento",
+					"fromPath": [
+						"anolancamento"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "right_tempominutos",
+					"fromPath": [
+						"tempominutos"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "right_genero",
+					"fromPath": [
+						"genero"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "right_notamedia",
+					"fromPath": [
+						"notamedia"
+					],
+					"toType": "double",
+					"fromType": "double",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "right_numerovotos",
+					"fromPath": [
+						"numerovotos"
+					],
+					"toType": "int",
+					"fromType": "int",
+					"dropped": false,
+					"children": null
+				}
+			],
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1687533464960": {
+			"nodeId": "node-1687533464960",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [],
+			"name": "Dados_TMDB",
+			"generatedNodeName": "Dados_TMDB_node1687533464960",
+			"classification": "DataSource",
+			"type": "Catalog",
+			"isCatalog": true,
+			"database": "trusted_tmdb",
+			"table": "filmes",
+			"calculatedType": "",
+			"runtimeParameters": [],
+			"codeGenVersion": 2
+		},
+		"node-1687534762855": {
+			"nodeId": "node-1687534762855",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1687533919188"
+			],
+			"name": "Change Schema",
+			"generatedNodeName": "ChangeSchema_node1687534762855",
+			"classification": "Transform",
+			"type": "ApplyMapping",
+			"mapping": [
+				{
+					"toKey": "id",
+					"fromPath": [
+						"id"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "popularidade",
+					"fromPath": [
+						"popularidade"
+					],
+					"toType": "double",
+					"fromType": "double",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "right_id",
+					"fromPath": [
+						"right_id"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "right_titulopincipal",
+					"fromPath": [
+						"right_titulopincipal"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "right_titulooriginal",
+					"fromPath": [
+						"right_titulooriginal"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "right_anolancamento",
+					"fromPath": [
+						"right_anolancamento"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "right_tempominutos",
+					"fromPath": [
+						"right_tempominutos"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "right_genero",
+					"fromPath": [
+						"right_genero"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "right_notamedia",
+					"fromPath": [
+						"right_notamedia"
+					],
+					"toType": "double",
+					"fromType": "double",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "right_numerovotos",
+					"fromPath": [
+						"right_numerovotos"
+					],
+					"toType": "int",
+					"fromType": "int",
+					"dropped": false,
+					"children": null
+				}
+			],
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1687533480460": {
+			"nodeId": "node-1687533480460",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [],
+			"name": "Movies_CSV",
+			"generatedNodeName": "Movies_CSV_node1687533480460",
+			"classification": "DataSource",
+			"type": "Catalog",
+			"isCatalog": true,
+			"database": "trusted_tmdb",
+			"table": "movies",
+			"calculatedType": "",
+			"runtimeParameters": [],
+			"codeGenVersion": 2
+		},
+		"node-1687533666290": {
+			"nodeId": "node-1687533666290",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1687533480460"
+			],
+			"name": "Change Schema",
+			"generatedNodeName": "ChangeSchema_node1687533666290",
+			"classification": "Transform",
+			"type": "ApplyMapping",
+			"mapping": [
+				{
+					"toKey": "id",
+					"fromPath": [
+						"id"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "titulopincipal",
+					"fromPath": [
+						"titulopincipal"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "titulooriginal",
+					"fromPath": [
+						"titulooriginal"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "anolancamento",
+					"fromPath": [
+						"anolancamento"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "tempominutos",
+					"fromPath": [
+						"tempominutos"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "genero",
+					"fromPath": [
+						"genero"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "notamedia",
+					"fromPath": [
+						"notamedia"
+					],
+					"toType": "double",
+					"fromType": "double",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "numerovotos",
+					"fromPath": [
+						"numerovotos"
+					],
+					"toType": "int",
+					"fromType": "int",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "generoartista",
+					"fromPath": [
+						"generoartista"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "personagem",
+					"fromPath": [
+						"personagem"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "nomeartista",
+					"fromPath": [
+						"nomeartista"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "anonascimento",
+					"fromPath": [
+						"anonascimento"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "anofalecimento",
+					"fromPath": [
+						"anofalecimento"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "profissao",
+					"fromPath": [
+						"profissao"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "titulosmaisconhecidos",
+					"fromPath": [
+						"titulosmaisconhecidos"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				}
+			],
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		}
+	},
+	"hasBeenSaved": false
+}

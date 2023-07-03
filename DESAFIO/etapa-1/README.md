@@ -1,6 +1,6 @@
 ### ETAPA 1 DO DESAFIO. ###
 
-## Desafio de Carga de Dados para a AWS#
+## Desafio de Carga de Dados para a AWS##
 
 Este repositório contém a implementação de um desafio que consiste em carregar arquivos CSV de filmes e séries para a Amazon Web Services (AWS). O objetivo é utilizar a biblioteca boto3 do Python para transferir os dados para o serviço de armazenamento S3 da AWS.
 
